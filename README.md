@@ -129,9 +129,7 @@ LLM_API_KEY=your_key_here
 
 ## Team
 
-*Ananya Chand*
-*Raseem Shafi*
+*Ananya Chand,*
+*Raseem Shafi,*
 *Swathee K*
-## License
 
-*Add a license. Note the MaintNet data has its own terms.*
