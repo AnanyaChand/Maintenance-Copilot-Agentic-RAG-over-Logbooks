@@ -19,6 +19,8 @@ Searches in three ways at once: exact keywords, meaning, and typo-tolerant match
 Uses an AI agent with real tools to look up records and write a short answer.
 Cites every claim with a Record ID, and refuses when evidence is weak.
 Shows everything in a web app: answer, source records side by side, and the agent's tool-call trace.
+
+
 Phase 1 provides validated ingestion and normalization for the MaintNet aviation maintenance CSV. It references the source dataset through `DATASET_PATH`; it does not copy or alter the source file.
 
 ## Setup
