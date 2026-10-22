@@ -1,6 +1,24 @@
 # ✈️ Maintenance Copilot: Agentic RAG over Aviation Logbooks
 
+A search-and-answer assistant for aircraft maintenance technicians. Describe a fault, and the copilot finds similar past logbook entries, summarises the likely causes and the actions that fixed them, and shows the evidence. If the evidence is weak, it says so instead of guessing.
 
+Disclaimer: This tool searches historical logbook records. It does not give approved maintenance procedures and does not diagnose aircraft. Always follow the official maintenance manual.
+
+Hackathon: PS 1.3 · Track 1 – Aviation Maintenance
+
+The problem
+
+When a technician sees a fault, the fix is often buried in years of old logbook entries. Those entries are:
+
+Short and full of abbreviations (REPL R/H MLG STRUT)
+Misspelled, so normal search misses obvious matches
+High stakes: in maintenance, a confident wrong answer is worse than no answer
+What it does
+Cleans the text: expands abbreviations, keeps the original text untouched.
+Searches in three ways at once: exact keywords, meaning, and typo-tolerant matching.
+Uses an AI agent with real tools to look up records and write a short answer.
+Cites every claim with a Record ID, and refuses when evidence is weak.
+Shows everything in a web app: answer, source records side by side, and the agent's tool-call trace.
 Phase 1 provides validated ingestion and normalization for the MaintNet aviation maintenance CSV. It references the source dataset through `DATASET_PATH`; it does not copy or alter the source file.
 
 ## Setup
