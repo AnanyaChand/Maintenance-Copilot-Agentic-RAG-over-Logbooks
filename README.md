@@ -1,25 +1,4 @@
-# ✈️ Maintenance Copilot: Agentic RAG over Aviation Logbooks
-
-A search-and-answer assistant for aircraft maintenance technicians. Describe a fault, and the copilot finds similar past logbook entries, summarises the likely causes and the actions that fixed them, and shows the evidence. If the evidence is weak, it says so instead of guessing.
-
-Disclaimer: This tool searches historical logbook records. It does not give approved maintenance procedures and does not diagnose aircraft. Always follow the official maintenance manual.
-
-Hackathon: PS 1.3 · Track 1 – Aviation Maintenance
-
-The problem
-
-When a technician sees a fault, the fix is often buried in years of old logbook entries. Those entries are:
-
-Short and full of abbreviations (REPL R/H MLG STRUT)
-Misspelled, so normal search misses obvious matches
-High stakes: in maintenance, a confident wrong answer is worse than no answer
-What it does
-Cleans the text: expands abbreviations, keeps the original text untouched.
-Searches in three ways at once: exact keywords, meaning, and typo-tolerant matching.
-Uses an AI agent with real tools to look up records and write a short answer.
-Cites every claim with a Record ID, and refuses when evidence is weak.
-Shows everything in a web app: answer, source records side by side, and the agent's tool-call trace.
-
+# Maintenance Copilot
 
 Phase 1 provides validated ingestion and normalization for the MaintNet aviation maintenance CSV. It references the source dataset through `DATASET_PATH`; it does not copy or alter the source file.
 
@@ -172,3 +151,38 @@ action-divergence cases. Human metrics remain unavailable until humans annotate.
 ```bash
 .venv/bin/python -m maintenance_copilot.workbench_reports report
 ```
+
+## Phase 9: Historical Pattern Intelligence
+
+Repeated historical issue pattern across the MaintNet corpus
+
+Patterns are similarity-based groupings of historical logbook text.
+They do not establish aircraft-specific recurrence, cause, or approved maintenance action.
+
+In the main app select **Workspace → Historical Pattern Intelligence** for the
+problem-only graph explorer. Normal fault answers link retained patterns using
+cited record IDs. Retrieval defaults and agent safety gates are unchanged.
+
+See [method, measured results, review artifact and reproduction commands](docs/historical-patterns.md).
+The initial build retains 301 patterns; human quality review is pending.
+
+## Phase 8: optional LLM tool calling
+
+The default remains the deterministic extractive agent, with no API key required.
+An explicitly configured `COPILOT_MODE=llm` and `LLM_ENABLED=true` enable an
+experimental OpenAI-compatible tool-calling provider. Local retrieval gates run
+before API access. The model must then request real search and fetch calls; a
+strict JSON contract and deterministic whole-field verifier validate its output.
+Errors, timeouts and rejected output fall back to the existing deterministic agent.
+
+See [Phase 8 setup, evaluation and limitations](evaluation/PHASE8.md). Configure
+the blank LLM settings in `.env.example` in your private `.env`; do not commit keys.
+The UI shows the actual outcome and safe fallback reason. No model name is chosen
+for you. This phase adds no new runtime dependencies.
+
+```bash
+# Offline protocol test over the frozen suite; no frontier model/API calls.
+.venv/bin/python -m maintenance_copilot.llm_evaluation --provider mock \
+  --output evaluation/results/my-phase8-mock.json
+```
+

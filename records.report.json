@@ -1,0 +1,14 @@
+{
+  "source_path": "/Users/raseemshafi/Projects/Aircraft_Annotation_DataFile.csv",
+  "source_sha256": "a70daa27ba9c44a68617d69be1352be7fde003145ca142cbe0b7b51e197c6c3a",
+  "encoding": "utf-8-sig",
+  "detected_columns": {
+    "record_id": "IDENT",
+    "problem": "PROBLEM",
+    "action": "ACTION"
+  },
+  "source_rows": 6169,
+  "loaded_records": 6169,
+  "skipped_blank_rows": 0,
+  "duplicate_ids": []
+}

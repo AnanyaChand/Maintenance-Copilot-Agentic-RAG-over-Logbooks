@@ -1,0 +1,13 @@
+{
+  "index_version": "hybrid-rrf-v1",
+  "normalization_version": "dictionary-normalization-v1",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "source_sha256": "a70daa27ba9c44a68617d69be1352be7fde003145ca142cbe0b7b51e197c6c3a",
+  "record_count": 6169,
+  "embedding_dimensions": 384,
+  "rrf_k": 60,
+  "bm25_pool_size": 50,
+  "vector_pool_size": 50,
+  "abbreviation_sha256": "0b8f1f220c38d55e96585fe19d48ad3401aeef19d52f85fbc9337cd3d3dca975",
+  "typo_corrections_sha256": "c00d14b4fc49225560f1a14adf16a49eb72bcff506b8eb8463bcf44797c0203a"
+}

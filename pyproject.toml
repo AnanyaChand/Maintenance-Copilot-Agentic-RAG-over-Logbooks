@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maintenance-copilot"
+version = "0.1.0"
+description = "Agentic retrieval over the MaintNet aviation maintenance logbook dataset"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "faiss-cpu>=1.8,<2",
+  "numpy>=1.26,<3",
+  "scipy>=1.11,<2",
+  "pydantic>=2.7,<3",
+  "python-dotenv>=1.0,<2",
+  "rank-bm25>=0.2.2,<0.3",
+  "sentence-transformers>=3,<6",
+  "streamlit>=1.40,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
+]
+
+[project.scripts]
+maintenance-copilot = "maintenance_copilot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+maintenance_copilot = ["resources/*.json", "resources/*.txt"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
